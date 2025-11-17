@@ -1,0 +1,88 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>QR Code Generator</title>
+
+  <style>
+    body {
+      font-family: Arial;
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      height: 100vh;
+      background: #f2f2f2;
+      margin: 0;
+    }
+
+    .box {
+      background: white;
+      padding: 20px;
+      border-radius: 10px;
+      text-align: center;
+      width: 300px;
+      box-shadow: 0 0 10px rgba(0,0,0,0.1);
+    }
+
+    input {
+      width: 100%;
+      padding: 10px;
+      border: 1px solid #aaa;
+      border-radius: 8px;
+      font-size: 16px;
+      margin-bottom: 10px;
+    }
+
+    button {
+      width: 100%;
+      padding: 10px;
+      background: #0b6cf0;
+      color: white;
+      border: none;
+      border-radius: 8px;
+      font-size: 16px;
+      cursor: pointer;
+    }
+
+    button:hover {
+      background: #084bb5;
+    }
+
+    img {
+      margin-top: 15px;
+    }
+  </style>
+
+</head>
+<body>
+
+  <div class="box">
+    <h2>QR Code Generator</h2>
+
+    <input type="text" id="inputText" placeholder="Enter text or link">
+
+    <button onclick="generateQR()">Generate QR Code</button>
+
+    <div id="qrBox"></div>
+  </div>
+
+  <script>
+    function generateQR() {
+      let text = document.getElementById("inputText").value;
+      let qrBox = document.getElementById("qrBox");
+
+      if (text.trim() === "") {
+        qrBox.innerHTML = "<p>Please enter something!</p>";
+        return;
+      }
+
+      // Free QR API
+      qrBox.innerHTML = `
+        <img src="https://api.qrserver.com/v1/create-qr-code/?size=200x200&data=${text}" />
+      `;
+    }
+  </script>
+
+</body>
+</html>
